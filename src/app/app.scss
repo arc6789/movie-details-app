@@ -1,0 +1,221 @@
+$break-small: 768px;
+$break-large: 1200px;
+$dark-blue: #1d3a5d;
+$light-blue: #12a1c8;
+$bg-grey: rgb(236, 236, 236);
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+body, html {
+  overflow-y: hidden;
+}
+
+.container-fluid {
+  padding: 0;
+  background-color: $bg-grey;
+}
+
+.error-bg  {
+  background-color: $bg-grey;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 80px;
+  width: 80%;
+  margin-left: 18%;
+  @include respond-to(handhelds) {
+    margin-left: 0px;
+    width: 100%;
+  }
+}
+
+.header-wrapper{
+  width: 100%;
+  background-color: $light-blue;
+  color: white;
+  padding: 20px 30px;
+  text-transform: uppercase;
+  z-index: 1;
+  height: 80px;
+
+  @include respond-to(handhelds) {
+    text-align: center
+  }
+
+  h1 {
+    font-weight: 300;
+    margin-bottom: 0;
+    line-height: 2.5rem;
+  }
+}
+
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  @include respond-to(handhelds) {
+    display: inline-block;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    background: none;
+    color: unset;
+    border: none;
+  }
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0
+
+}
+
+.menubar-wrapper {
+  position: absolute;
+  top: 80px;
+  background-color: $dark-blue;
+  color: white;
+  height: 100%;
+  transition: 0.2s;
+
+  @include respond-to(handhelds) {
+    z-index: 2;
+    left: -25.5em;
+    &.mobile-open {
+      left: 0;
+    }
+  }
+
+  .menubar-ul {
+    padding-top: 60px;
+  }
+
+  .menubar-li {
+    list-style-type: none;
+    padding-bottom: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+}
+
+.card-wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 80%;
+  margin-left: 18%;
+  padding-bottom: 100px;
+  @include respond-to(handhelds) {
+    margin-left: 0px;
+    width: 100%;
+  }
+}
+
+.card-section-title {
+  padding-top: 40px;
+  letter-spacing: 1px;
+  color: $dark-blue;
+}
+
+.movie-card {
+  width: 100%;
+  padding: 20px;
+  margin: 20px 0 20px;
+  height: 90%;
+  color: $dark-blue;
+  cursor: pointer;
+  @include respond-to(handhelds) {
+    height: initial;
+    margin-top: 20px;
+  }
+
+  .movie-card-img-wrapper {
+    height: 30em;
+    width: 100%;
+    overflow-y: hidden;
+    overflow: hidden;
+    background-position: center center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+  }
+
+  .movie-card-img {
+    height: 100%;
+    background-position: center center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+    overflow: hidden;
+    overflow-y: hidden;
+    object-fit: cover;
+  }
+}
+
+.modal-header {
+  border-bottom: none
+}
+
+.modal-dialog {
+  max-width: 800px;
+  @include respond-to(handhelds) {
+    max-width: 95%;
+    margin: 30px auto
+  }
+
+  .modal-content {
+    padding: 15px;
+  }
+}
+
+.movie-details-no-img {
+  height: 400px;  
+  background-color: $bg-grey;
+}
+
+.movie-details-content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: $dark-blue;
+
+  img {
+    @include respond-to(handhelds) {
+      width: 100%
+    }
+  }
+  .movie-details-text {
+    padding-left: 60px;
+    @include respond-to(handhelds) {
+      padding-left: unset;
+      padding-top: 20px;
+    }
+
+    .movie-details-text-title {
+      @include respond-to(handhelds) {
+        text-align: center
+      }
+    }
+  }
+}
+
+.modal-button {
+  border: none;
+  float: right;
+  display: block;
+  margin-top: 0;
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  background-color: white;
+  color: $dark-blue
+}
+
